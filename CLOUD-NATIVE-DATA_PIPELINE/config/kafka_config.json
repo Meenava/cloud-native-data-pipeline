@@ -1,0 +1,11 @@
+{
+  "brokers": ["localhost:9092"],
+  "topics": {
+    "input": "input_topic",
+    "output": "output_topic"
+  },
+  "consumer_group": "data_pipeline_group",
+  "auto_offset_reset": "earliest",
+  "enable_auto_commit": true,
+  "max_poll_records": 100
+}

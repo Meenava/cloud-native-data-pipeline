@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-native-data-pipeline
+  labels:
+    app: cloud-native-data-pipeline
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cloud-native-data-pipeline
+  template:
+    metadata:
+      labels:
+        app: cloud-native-data-pipeline
+    spec:
+      containers:
+      - name: cloud-native-data-pipeline
+        image: your-docker-image:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: KAFKA_CONFIG
+          valueFrom:
+            configMapKeyRef:
+              name: kafka-config
+              key: kafka_config.json
+        - name: S3_CONFIG
+          valueFrom:
+            configMapKeyRef:
+              name: s3-config
+              key: s3_config.json
+        - name: DB_CONFIG
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: db_config.json
+        volumeMounts:
+        - name: app-volume
+          mountPath: /app
+      volumes:
+      - name: app-volume
+        emptyDir: {}

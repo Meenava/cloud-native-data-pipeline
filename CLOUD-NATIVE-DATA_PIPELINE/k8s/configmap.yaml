@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloud-native-data-pipeline-config
+data:
+  kafka_config: |
+    {
+      "broker_addresses": "localhost:9092",
+      "topic_name": "data_topic"
+    }
+  s3_config: |
+    {
+      "bucket_name": "my-s3-bucket",
+      "region": "us-west-2"
+    }
+  db_config: |
+    {
+      "connection_string": "mongodb://localhost:27017",
+      "database_name": "mydatabase"
+    }

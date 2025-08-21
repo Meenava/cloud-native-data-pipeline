@@ -1,0 +1,5 @@
+{
+  "database": "my_database",
+  "connection_string": "mongodb://username:password@host:port",
+  "collection": "my_collection"
+}
